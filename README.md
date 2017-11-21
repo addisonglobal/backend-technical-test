@@ -32,6 +32,8 @@ trait SyncTokenService {
 }
 ```
 ```scala
+import scala.concurrent.Future
+
 trait AsyncTokenService {
   protected def authenticate(credentials: Credentials): Future[User]
   protected def issueToken(user: User): Future[UserToken]
@@ -40,6 +42,8 @@ trait AsyncTokenService {
 }
 ```
 **Task:** Provide both implementations of _requestToken_ in terms of _authenticate_ and _issueToken_. By doing that, whoever implements the service will only need to implement _authenticate_ and _issueToken_.
+
+**Note:** Bear in mind the `scala.concurrent.Future` in Scala is not equivalent to the `java.util.concurrent.Future` in Java. Future in Scala is composable, so if you're developing the solution in Java, feel free to change the signature in order to use most appropriate for Java.
 
 
 ### 2. Service Implementation
@@ -75,8 +79,9 @@ We prefer you to use an Actor Model implementation such as [Akka](https://akka.i
    * Returns the *UserToken* to the original caller.
 
 We're particularly interested on how the actor system (or the service orchestration) is designed and tested, paying special attention to the following two aspects:
-* Threading model.
-* Fault tolerance.
+* **Testing:** How you design the tests in order to increase the coverage.
+* **Threading model:** How you maximize the usage of the available resources.
+* **Fault tolerance:** How the system handles, isolates and reacts to failures.
 
 **Keep in mind:**
 * As the implementation is intended to serve multiple concurrent requests!!! The fact that a computation might take 5 seconds should not prevent other computations to happen during that time.
