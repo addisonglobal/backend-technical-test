@@ -10,7 +10,7 @@ The main goal of this exercise is to assess your approach to problem solving, as
 ## Glossary
 * Credentials - A tuple of _username_ and _password_ that are used to authenticate a customer.
 * User - Identifies a given customer within the system. For simplicity, it just contains _userId_ which will match the _username_ of the given customer.
-* UserToken - Token granted to a user in order to perform further operations in the system. It is the concatenation of the _userId_ and the current time. For example: *user123_2017-01-01T10:00:00.000*
+* UserToken - Token granted to a user in order to perform further operations in the system. It is the concatenation of the _userId_ and the current time. For example: `user123_2017-01-01T10:00:00.000`
 
 Implementation example:
 ```scala
@@ -43,7 +43,7 @@ trait AsyncTokenService {
 ```
 **Task:** Provide both implementations of _requestToken_ in terms of _authenticate_ and _issueToken_. By doing that, whoever implements the service will only need to implement _authenticate_ and _issueToken_.
 
-> **Note:** Bear in mind the `scala.concurrent.Future` in Scala is not equivalent to the `java.util.concurrent.Future` in Java. Future in Scala is composable, so if you're developing the solution in Java, feel free to change the signature in order to use most appropriate for Java. Our suggestion would be either `java.util.concurrent.CompletionStage` or `java.util.concurrent.CompletableFuture`.
+> **Note:** Bear in mind the `scala.concurrent.Future` in Scala is not equivalent to the `java.util.concurrent.Future` in Java. Future in Scala is composable, so if you're developing the solution in Java, feel free to change the signature in order to use most appropriate for Java. Suggestions: either `java.util.concurrent.CompletionStage` or `java.util.concurrent.CompletableFuture`.
 
 
 ### 2. Service Implementation
@@ -73,12 +73,12 @@ We prefer you to use an Actor Model implementation such as [Akka](https://akka.i
    * Returns a *UserToken* for a given *User*.
    * The *UserToken* instance will always be returned with a random delay between 0 and 5000 milliseconds.
    * If the *userId* of the provided *User* starts with **A**, the call will fail.
-   * The *token* attribute for the *User Token* will be the concatenation of the *userId* and the current date time in UTC: ```yyyy-MM-dd'T'HH:mm:ssZ```.
-        * Example: ```username: house => house_2017-01-01T10:00:00Z```
+   * The *token* attribute for the *User Token* will be the concatenation of the *userId* and the current date time in UTC: `yyyy-MM-dd'T'HH:mm:ssZ`.
+        * Example: `username: house => house_2017-01-01T10:00:00Z`
    * This logic has to be encapsulated in a separate Actor/Service/Module.
    
 3. Implement the *requestToken* function/method from the **SimpleAsyncTokenService** trait/interface in a way that:
-   * Its logic in encapsulated in an Actor/Service/Module.
+   * Its logic is encapsulated in an Actor/Service/Module.
    * It makes use of the previously defined actors/services/modules for authenticating users and granting tokens:
         * It will first use the validation of the *Credentials* to obtain a *User*.
         * After that it will then use the actor/service/module to obtain a *UserToken*.
