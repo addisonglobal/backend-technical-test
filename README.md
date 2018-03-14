@@ -20,6 +20,7 @@ case class UserToken(token: String)
 ```
 ## Exercise
 The goal of the exercise is to improve the definition of a backend service/module and provide an implementation for it. Once this is finished, you'll create a microservice that offers a REST API to consume the service/module functionality.
+> **Note:** Favour simplicity, code the solution as a single module and use packages to structure it..
 
 ### 1. Service Trait / Interface
 Given these two synchronous and asynchronous definitions of the TokenService
@@ -86,7 +87,8 @@ We prefer you to use an Actor Model implementation such as [Akka](https://akka.i
 
 **Evaluation** notes:
 
-We're particularly interested on how the actor system (or the service orchestration) is designed and tested, paying special attention to the following two aspects: 
+We're particularly interested on how the actor system (or the service orchestration) is designed and tested, paying special attention to the following aspects:
+* **Simplicity**: Do not over-engineer the solution, simple is better. 
 * **Threading model** and **Non-Blocking APIs**: How you maximize the usage of the available resources.
 * **Concurrency**: How concurrent requests are handled to maximize the performance.
 * **Testing**: How you design the tests in order to increase the coverage.
@@ -110,12 +112,11 @@ We're interested on the structure and completeness of the API, so as how it is t
 
 ## Deliverable
 * **Source Code**: Either of the following ways to bundle the code, whatever is easier for you:
-    * A `zip` file containing the whole project. Remember to skip the binaries if you choose this option.
-    * A bundled/archived repository showing your commit history or a link to an accessible private repository with your work in (Github can host private repositories at a cost; there is no charge for doing so with Bitbucket). Git example for sending us a standalone bundle:
-
-            git bundle create <yourname>.bundle --all --branches
+    * A `zip` file containing the whole project. Remember to skip binaries, logs, etc if you choose this option.
+    * A link to an accessible private repository with your work in (Github can host private repositories at a cost; there is no charge for doing so with Bitbucket).
 
 * **Documentation** / **Instructions**: You can bundle it together with the code.
     * A `Readme.md` file explaining the assumptions and decisions you've made solving this task including technology and library choices.
     * Any instructions required to run your solution and tests in a Linux environment.
+> **Note:** Remember this is not a thesis, just few lines is enough. Favour self-documenting code.
 
